@@ -1,0 +1,2 @@
+include ':app', ':common', ':EasyAdapterLibrary'
+project(':EasyAdapterLibrary').projectDir = new File('library/EasyAdapterLibrary')
