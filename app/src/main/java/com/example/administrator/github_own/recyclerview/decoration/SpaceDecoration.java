@@ -24,7 +24,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
 import android.view.View;
 
-import com.justwayward.reader.view.recyclerview.adapter.RecyclerArrayAdapter;
+import com.example.administrator.github_own.recyclerview.adapter.RecyclerArrayAdapter;
 
 
 public class SpaceDecoration extends RecyclerView.ItemDecoration {
