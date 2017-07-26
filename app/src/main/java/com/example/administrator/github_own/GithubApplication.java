@@ -6,6 +6,7 @@ import com.example.administrator.github_own.component.AppComponent;
 import com.example.administrator.github_own.component.DaggerAppComponent;
 import com.example.administrator.github_own.module.AppModule;
 import com.example.administrator.github_own.module.GithubApiModule;
+import com.example.administrator.github_own.utils.AppUtil;
 
 /**
  * Created by Administrator on 2017/7/21 0021.
@@ -21,6 +22,8 @@ public class GithubApplication extends Application {
         super.onCreate();
         sInstance=this;
         initComponent();
+
+        AppUtil.init(this);
     }
 
     private void initComponent() {

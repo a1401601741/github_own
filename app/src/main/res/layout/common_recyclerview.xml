@@ -1,4 +1,3 @@
-
 <!--
   ~ Copyright (c) 2016 JustWayward Team
   ~
@@ -14,45 +13,52 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<com.justwayward.reader.view.recyclerview.swipe.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ptr_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.example.administrator.github_own.recyclerview.swipe.SwipeRefreshLayout
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    android:id = "@+id/ptr_layout"
+    android:layout_width = "match_parent"
+    android:layout_height = "match_parent"
+    >
 
     <android.support.v7.widget.RecyclerView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:scrollbars="vertical|horizontal" />
+        android:id = "@android:id/list"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        android:clickable = "true"
+        android:scrollbars = "vertical|horizontal"
+        />
 
     <FrameLayout
-        android:id="@+id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true" />
+        android:id = "@+id/empty"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        android:clickable = "true"
+        />
 
     <FrameLayout
-        android:id="@+id/progress"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true" />
+        android:id = "@+id/progress"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        android:clickable = "true"
+        />
 
     <FrameLayout
-        android:id="@+id/error"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true" />
+        android:id = "@+id/error"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        android:clickable = "true"
+        />
 
     <TextView
-        android:id="@+id/tvTip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/tip"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="似乎没有网络哦"
-        android:textColor="@color/white"
-        android:visibility="gone"/>
+        android:id = "@+id/tvTip"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:background = "@color/tip"
+        android:gravity = "center"
+        android:padding = "5dp"
+        android:text = "似乎没有网络哦"
+        android:textColor = "@color/white"
+        android:visibility = "gone"
+        />
 
-</com.justwayward.reader.view.recyclerview.swipe.SwipeRefreshLayout>
+</com.example.administrator.github_own.recyclerview.swipe.SwipeRefreshLayout>

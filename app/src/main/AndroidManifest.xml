@@ -3,6 +3,17 @@
           package = "com.example.administrator.github_own"
     >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
     <application
         android:name=".GithubApplication"
         android:allowBackup = "true"
@@ -22,6 +33,8 @@
                 <category android:name = "android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name = ".activity.SingleUserActivity"/>
     </application>
 
 </manifest>

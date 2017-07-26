@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+              xmlns:app = "http://schemas.android.com/apk/res-auto"
+              android:layout_width = "match_parent"
+              android:layout_height = "match_parent"
+              android:orientation = "vertical"
+              android:padding = "2dp"
+    >
+
+    <include layout = "@layout/single_about_header"/>
+
+    <View
+        android:layout_width = "match_parent"
+        android:layout_height = "5dp"
+        />
+
+    <com.example.administrator.github_own.recyclerview.EasyRecyclerView
+        android:id = "@+id/recycleview"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        app:layout_empty = "@layout/common_empty_view"
+        app:layout_progress = "@layout/common_progress_view"
+        app:scrollbarStyle = "insideOverlay"
+        ></com.example.administrator.github_own.recyclerview.EasyRecyclerView>
+
+</LinearLayout>
