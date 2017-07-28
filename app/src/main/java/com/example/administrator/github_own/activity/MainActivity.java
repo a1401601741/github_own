@@ -1,13 +1,12 @@
 package com.example.administrator.github_own.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,10 +15,15 @@ import com.example.administrator.github_own.R;
 import com.example.administrator.github_own.base.BaseActivity;
 import com.example.administrator.github_own.component.AppComponent;
 import com.example.administrator.github_own.component.DaggerGithubComponent;
+import com.example.administrator.github_own.event.SearchEvent;
 import com.example.administrator.github_own.fragment.RepoListFragment;
 import com.example.administrator.github_own.fragment.UserListFragment;
 import com.example.administrator.github_own.presenter.MainActivityPresenter;
 import com.example.administrator.github_own.utils.ActivityUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import javax.inject.Inject;
 
@@ -30,6 +34,7 @@ public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    public final static String USER_NAME = "username";
     @Inject
     MainActivityPresenter mainActivityPresenter;
 
@@ -39,7 +44,6 @@ public class MainActivity extends BaseActivity
     NavigationView mNavView;
 
     private RepoListFragment mRepoListFragment;
-    private UserListFragment mUserListFragment;
 
     private Fragment mCurrentFragment;
 
@@ -66,29 +70,24 @@ public class MainActivity extends BaseActivity
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         mNavView.setNavigationItemSelectedListener(this);
+        EventBus.getDefault().register(this);
     }
 
     private void initFragment() {
         if (mRepoListFragment == null) {
-            mRepoListFragment = RepoListFragment.newInstance("a1401601741");
+            mRepoListFragment = RepoListFragment.newInstance("mojombo");
         }
-        if (mUserListFragment == null) {
-            mUserListFragment = UserListFragment.newInstance("tom");
-        }
-        mCurrentFragment=mRepoListFragment;
-        ActivityUtils.addAndShowFragmentToActivity(getSupportFragmentManager(),
-                mUserListFragment, null, null, R.id.contentFrame);
     }
 
     @Override
     protected void initDatas() {
-
     }
 
     @Override
     protected void initToolBar() {
         mCommonToolbar.setTitle("Profile");
         mCommonToolbar.setNavigationIcon(R.drawable.ab_back);
+
     }
 
     @Override
@@ -129,18 +128,29 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_news_feed) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_nofication) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_my_repositories) {
 
-        } else if (id == R.id.nav_manage) {
+            mCurrentFragment = mRepoListFragment;
+            ActivityUtils.addAndShowFragmentToActivity(getSupportFragmentManager(),
+                    mRepoListFragment, null, null, R.id.contentFrame);
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_search) {
 
-        } else if (id == R.id.nav_send) {
+//            mCurrentFragment = mUserListFragment;
+//            ActivityUtils.addAndShowFragmentToActivity(getSupportFragmentManager(),
+//                    mUserListFragment, null, null, R.id.contentFrame);
+            SearchActivity.startActivity(this);
 
+        } else if (id == R.id.nav_my_pull_requests) {
+
+//            SearchActivity.startActivity(this);
+
+        } else if (id == R.id.nav_my_gists) {
+            UserListAcitivity.startActivity(this);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -153,5 +163,16 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void searchUserList(SearchEvent searchEvent) {
+
+    }
+
+
+    public static void startActivity(Context context, String username) {
+        context.startActivity(new Intent(context, MainActivity.class).putExtra(USER_NAME,
+                username));
     }
 }

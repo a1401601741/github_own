@@ -7,22 +7,22 @@
     >
 
     <com.example.administrator.github_own.widget.RVPIndicator
-        android:id="@+id/rvp_indicator"
+        android:id = "@+id/rvp_indicator"
         android:layout_width = "match_parent"
         android:layout_height = "55dp"
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal"
-        app:indicator_color="@color/white"
-        app:indicator_style="line"
-        app:item_count="2"
-        app:text_color_hightlight="@color/white"
-        app:text_color_normal="@color/light_gray"
+        android:background = "@color/colorPrimary"
+        android:orientation = "horizontal"
+        app:indicator_color = "@color/white"
+        app:indicator_style = "line"
+        app:item_count = "2"
+        app:text_color_hightlight = "@color/white"
+        app:text_color_normal = "@color/light_gray"
         ></com.example.administrator.github_own.widget.RVPIndicator>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/vp_single_user"
+        android:id = "@+id/vp_single_user"
         android:layout_width = "match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height = "0dp"
+        android:layout_weight = "1"
         ></android.support.v4.view.ViewPager>
 </LinearLayout>

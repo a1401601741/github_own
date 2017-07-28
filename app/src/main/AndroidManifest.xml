@@ -3,19 +3,19 @@
           package = "com.example.administrator.github_own"
     >
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name = "android.permission.INTERNET"/>
+    <uses-permission android:name = "android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name = "android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name = "android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name = "android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name = "android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name = "android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name = "android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name = "android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name = "android.permission.GET_TASKS"/>
 
     <application
-        android:name=".GithubApplication"
+        android:name = ".GithubApplication"
         android:allowBackup = "true"
         android:icon = "@mipmap/ic_launcher"
         android:label = "@string/app_name"
@@ -35,6 +35,15 @@
         </activity>
 
         <activity android:name = ".activity.SingleUserActivity"/>
+        <activity
+            android:name = ".activity.SearchActivity"
+            android:theme = "@style/AppTheme.NoActionBar"
+            />
+        <activity
+            android:name = ".activity.UserListAcitivity"
+            android:theme = "@style/AppTheme.NoActionBar"
+            />
+
     </application>
 
 </manifest>

@@ -14,13 +14,16 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="48dp">
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+              android:layout_width = "match_parent"
+              android:layout_height = "48dp"
+              android:orientation = "horizontal"
+    >
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="网络错误,点击重试"/>
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        android:gravity = "center"
+        android:text = "网络错误,点击重试"
+        />
 </LinearLayout>

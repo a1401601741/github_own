@@ -29,4 +29,10 @@ public class StringUtils {
         return username + "+repos:%3E42+followers:%3E500";
     }
 
+    public static String getUserDate(String originDate) {
+        String midle = originDate.substring(0, 10);
+        String[] dates = midle.split("-");
+        return "Member since "+dates[0]+"年 "+dates[1]+"月 "+dates[2]+"日";
+    }
+
 }

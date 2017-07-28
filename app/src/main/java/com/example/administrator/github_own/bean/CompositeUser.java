@@ -6,26 +6,35 @@ import java.io.Serializable;
  * Created by Administrator on 2017/7/25 0025.
  */
 
-public class CompositeUser implements Serializable{
+public class CompositeUser implements Serializable {
 
+    private String username;
     private String name;
     private String avatar_url;
     private int follows;
+    private int repos;
+
+    public CompositeUser(String username, String name, String avatar_url, int follows, int repos) {
+        this.username = username;
+        this.name = name;
+        this.avatar_url = avatar_url;
+        this.follows = follows;
+        this.repos = repos;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public int getRepos() {
         return repos;
     }
 
     public void setRepos(int repos) {
-        this.repos = repos;
-    }
-
-    private int repos;
-
-    public CompositeUser(String name, String avatar_url, int follows ,int repos) {
-        this.name = name;
-        this.avatar_url = avatar_url;
-        this.follows = follows;
         this.repos = repos;
     }
 

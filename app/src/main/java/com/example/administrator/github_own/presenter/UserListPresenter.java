@@ -66,7 +66,7 @@ public class UserListPresenter extends RxPresenter<UserListContract.View> implem
                 .map(new Func1<User.ItemsBean, CompositeUser>(){
                     @Override
                     public CompositeUser call(User.ItemsBean itemsBean) {
-                        return new CompositeUser(itemsBean.getLogin(),itemsBean.getAvatar_url(),1,1);
+                        return new CompositeUser(itemsBean.getLogin(),itemsBean.getLogin(),itemsBean.getAvatar_url(),1,1);
                     }
                 })
                 .toList()

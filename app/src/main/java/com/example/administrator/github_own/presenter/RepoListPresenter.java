@@ -51,15 +51,11 @@ public class RepoListPresenter extends RxPresenter<RepoListContract.View> implem
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("onerror", e.getCause().getMessage().toString());
                         mView.showError();
                     }
 
                     @Override
                     public void onNext(List<Repos> list) {
-
-                        Log.i("onnext", "Repo gets success");
-
                         mView.showRepoList(list, true);
                     }
                 });

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="single_user_tabs">
+    <string-array name = "single_user_tabs">
         <item>ABOUT</item>
         <item>PUBLIC ACTIVITY</item>
+    </string-array>
 
+    <string-array name = "single_repo_tabs">
+        <item>ABOUT</item>
+        <item>FILES</item>
+        <item>COMMITS</item>
+        <item>ACTIVITY</item>
     </string-array>
 </resources>

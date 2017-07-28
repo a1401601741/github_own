@@ -7,11 +7,11 @@
     >
 
     <com.example.administrator.github_own.recyclerview.EasyRecyclerView
-        android:id="@+id/recycleview"
+        android:id = "@+id/recycleview"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
         app:layout_empty = "@layout/common_empty_view"
         app:layout_progress = "@layout/common_progress_view"
         app:scrollbarStyle = "insideOverlay"
-        android:layout_width = "match_parent"
-        android:layout_height = "match_parent"
         ></com.example.administrator.github_own.recyclerview.EasyRecyclerView>
 </LinearLayout>

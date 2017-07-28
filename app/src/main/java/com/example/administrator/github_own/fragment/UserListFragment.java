@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.administrator.github_own.R;
+import com.example.administrator.github_own.activity.SingleUserActivity;
 import com.example.administrator.github_own.adapter.UserListAdapter;
 import com.example.administrator.github_own.base.BaseRxFragment;
 import com.example.administrator.github_own.bean.CompositeUser;
@@ -29,6 +30,10 @@ public class UserListFragment extends BaseRxFragment<UserListPresenter, Composit
         bundle.putString(USER_NAME, username);
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     private String username;
@@ -96,6 +101,7 @@ public class UserListFragment extends BaseRxFragment<UserListPresenter, Composit
 
     @Override
     public void onItemClick(int position) {
-
+        CompositeUser compositeUser = mAdapter.getItem(position);
+        SingleUserActivity.startActivity(getContext(), compositeUser.getUsername());
     }
 }

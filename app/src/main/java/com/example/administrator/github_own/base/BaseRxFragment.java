@@ -95,6 +95,7 @@ public abstract class BaseRxFragment<T1 extends BaseContract.BasePresenter, T2> 
 
     @Override
     public void onRefresh() {
+        mAdapter.clear();
         mEasyRecyclerView.setRefreshing(true);
     }
 

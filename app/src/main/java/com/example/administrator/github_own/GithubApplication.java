@@ -17,6 +17,10 @@ public class GithubApplication extends Application {
     private static GithubApplication sInstance;
     private AppComponent mAppComponent;
 
+    public static GithubApplication getInstance() {
+        return sInstance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -35,9 +39,5 @@ public class GithubApplication extends Application {
 
     public AppComponent getmAppComponent(){
         return mAppComponent;
-    }
-
-    public static GithubApplication getInstance() {
-        return sInstance;
     }
 }

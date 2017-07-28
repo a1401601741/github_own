@@ -37,39 +37,62 @@ import com.example.administrator.github_own.R;
 
 public class LoadingView extends View {
 
-    //the size in wrap_content model
-    private static final int CIRCLE_DIAMETER = 56;
-
-    private static final float CENTER_RADIUS = 15f;
-    private static final float STROKE_WIDTH = 3.5f;
-
-    private static final float MAX_PROGRESS_ARC = 300f;
-    private static final float MIN_PROGRESS_ARC = 20f;
-
-    private static final long ANIMATOR_DURATION = 1332;
-
-    private Rect bounds;
-    private Ring mRing;
-
-    private Animator animator = null;
-    private AnimatorSet animatorSet = null;
-    private boolean mIsAnimatorCancel = false;
-
-    private Interpolator interpolator = null;
-    //the ring's RectF
-    private final RectF mTempBounds = new RectF();
-    //绘制半圆的paint
-    private Paint mPaint;
-    private final int DEFAULT_COLOR = 0xFF3B99DF;
-    private boolean mAnimationStarted = false;
     //the ring style
     static final int RING_STYLE_SQUARE = 0;
     static final int RING_STYLE_ROUND = 1;
-
     //the animator style
     static final int PROGRESS_STYLE_MATERIAL = 0;
     static final int PROGRESS_STYLE_LINEAR = 1;
+    //the size in wrap_content model
+    private static final int CIRCLE_DIAMETER = 56;
+    private static final float CENTER_RADIUS = 15f;
+    private static final float STROKE_WIDTH = 3.5f;
+    private static final float MAX_PROGRESS_ARC = 300f;
+    private static final float MIN_PROGRESS_ARC = 20f;
+    private static final long ANIMATOR_DURATION = 1332;
+    //the ring's RectF
+    private final RectF mTempBounds = new RectF();
+    private final int DEFAULT_COLOR = 0xFF3B99DF;
+    private Rect bounds;
+    private Ring mRing;
+    private Animator animator = null;
+    private AnimatorSet animatorSet = null;
+    private boolean mIsAnimatorCancel = false;
+    /**
+     * Listen the animatorSet and the IncrementAnimator;
+     */
+    Animator.AnimatorListener animatorListener = new Animator.AnimatorListener() {
 
+        @Override
+        public void onAnimationStart(Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            if (mIsAnimatorCancel) return;
+            if (animation instanceof ValueAnimator) {
+                mRing.sweeping = mRing.sweep;
+            } else if (animation instanceof AnimatorSet) {
+                mRing.restore();
+                animatorSet.start();
+            }
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+
+        }
+    };
+    private Interpolator interpolator = null;
+    //绘制半圆的paint
+    private Paint mPaint;
+    private boolean mAnimationStarted = false;
     private float mRotation = 0f;
 
     public LoadingView(Context context) {
@@ -93,9 +116,11 @@ public class LoadingView extends View {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LoadingView, 0, 0);
             setColor(a.getInt(R.styleable.LoadingView_loadding_color, DEFAULT_COLOR));
             setRingStyle(a.getInt(R.styleable.LoadingView_ring_style, RING_STYLE_SQUARE));
-            setProgressStyle(a.getInt(R.styleable.LoadingView_progress_style, PROGRESS_STYLE_MATERIAL));
+            setProgressStyle(a.getInt(R.styleable.LoadingView_progress_style,
+                    PROGRESS_STYLE_MATERIAL));
             setStrokeWidth(a.getDimension(R.styleable.LoadingView_ring_width, dp2px(STROKE_WIDTH)));
-            setCenterRadius(a.getDimension(R.styleable.LoadingView_ring_radius, dp2px(CENTER_RADIUS)));
+            setCenterRadius(a.getDimension(R.styleable.LoadingView_ring_radius, dp2px
+                    (CENTER_RADIUS)));
             a.recycle();
         }
     }
@@ -168,7 +193,8 @@ public class LoadingView extends View {
     }
 
     private void buildAnimator() {
-        final ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f).setDuration(ANIMATOR_DURATION);
+        final ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f).setDuration
+                (ANIMATOR_DURATION);
         valueAnimator.setRepeatCount(-1);
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -226,7 +252,6 @@ public class LoadingView extends View {
         mIsAnimatorCancel = false;
     }
 
-
     public void stop() {
         mIsAnimatorCancel = true;
         if (animator != null) {
@@ -263,7 +288,8 @@ public class LoadingView extends View {
     private AnimatorSet buildFlexibleAnimation() {
         final Ring ring = mRing;
         AnimatorSet set = new AnimatorSet();
-        ValueAnimator increment = ValueAnimator.ofFloat(0, MAX_PROGRESS_ARC - MIN_PROGRESS_ARC).setDuration(ANIMATOR_DURATION / 2);
+        ValueAnimator increment = ValueAnimator.ofFloat(0, MAX_PROGRESS_ARC - MIN_PROGRESS_ARC)
+                .setDuration(ANIMATOR_DURATION / 2);
         increment.setInterpolator(new LinearInterpolator());
         increment.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -275,7 +301,8 @@ public class LoadingView extends View {
             }
         });
         increment.addListener(animatorListener);
-        ValueAnimator reduce = ValueAnimator.ofFloat(0, MAX_PROGRESS_ARC - MIN_PROGRESS_ARC).setDuration(ANIMATOR_DURATION / 2);
+        ValueAnimator reduce = ValueAnimator.ofFloat(0, MAX_PROGRESS_ARC - MIN_PROGRESS_ARC)
+                .setDuration(ANIMATOR_DURATION / 2);
         reduce.setInterpolator(interpolator);
         reduce.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -291,14 +318,13 @@ public class LoadingView extends View {
         return set;
     }
 
+    public int getColor() {
+        return mRing.color;
+    }
 
     public void setColor(int color) {
         mRing.color = color;
         mPaint.setColor(color);
-    }
-
-    public int getColor() {
-        return mRing.color;
     }
 
     @Override
@@ -330,9 +356,9 @@ public class LoadingView extends View {
      * @return result px value
      */
     private float dp2px(float dp) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources()
+                .getDisplayMetrics());
     }
-
 
     @Override
     protected Parcelable onSaveInstanceState() {
@@ -352,6 +378,17 @@ public class LoadingView extends View {
     static class Ring implements Parcelable {
 
 
+        public static final Creator<Ring> CREATOR = new Creator<Ring>() {
+            @Override
+            public Ring createFromParcel(Parcel source) {
+                return new Ring(source);
+            }
+
+            @Override
+            public Ring[] newArray(int size) {
+                return new Ring[size];
+            }
+        };
         public float strokeInset = 0f;
         public float strokeWidth = 0f;
         public float ringCenterRadius = 0f;
@@ -359,11 +396,25 @@ public class LoadingView extends View {
         public float end = 0f;
         public float sweep = 0f;
         public float sweeping = MIN_PROGRESS_ARC;
-
         public float starting = 0f;
         public float ending = 0f;
         public int color;
 
+        public Ring() {
+        }
+
+        protected Ring(Parcel in) {
+            this.strokeInset = in.readFloat();
+            this.strokeWidth = in.readFloat();
+            this.ringCenterRadius = in.readFloat();
+            this.start = in.readFloat();
+            this.end = in.readFloat();
+            this.sweep = in.readFloat();
+            this.sweeping = in.readFloat();
+            this.starting = in.readFloat();
+            this.ending = in.readFloat();
+            this.color = in.readInt();
+        }
 
         public void restore() {
             starting = start;
@@ -410,42 +461,24 @@ public class LoadingView extends View {
             dest.writeFloat(this.ending);
             dest.writeInt(this.color);
         }
-
-        public Ring() {
-        }
-
-        protected Ring(Parcel in) {
-            this.strokeInset = in.readFloat();
-            this.strokeWidth = in.readFloat();
-            this.ringCenterRadius = in.readFloat();
-            this.start = in.readFloat();
-            this.end = in.readFloat();
-            this.sweep = in.readFloat();
-            this.sweeping = in.readFloat();
-            this.starting = in.readFloat();
-            this.ending = in.readFloat();
-            this.color = in.readInt();
-        }
-
-        public static final Creator<Ring> CREATOR = new Creator<Ring>() {
-            @Override
-            public Ring createFromParcel(Parcel source) {
-                return new Ring(source);
-            }
-
-            @Override
-            public Ring[] newArray(int size) {
-                return new Ring[size];
-            }
-        };
     }
 
     /**
      *
      */
     static class SavedState extends BaseSavedState {
-        public Ring ring;
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
+            @Override
+            public SavedState createFromParcel(Parcel source) {
+                return new SavedState(source);
+            }
 
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
+        public Ring ring;
 
         public SavedState(Parcelable superState) {
             super(superState);
@@ -461,50 +494,5 @@ public class LoadingView extends View {
             super.writeToParcel(dest, flags);
             dest.writeParcelable(this.ring, flags);
         }
-
-
-        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
-            @Override
-            public SavedState createFromParcel(Parcel source) {
-                return new SavedState(source);
-            }
-
-            @Override
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
     }
-
-    /**
-     * Listen the animatorSet and the IncrementAnimator;
-     */
-    Animator.AnimatorListener animatorListener = new Animator.AnimatorListener() {
-
-        @Override
-        public void onAnimationStart(Animator animation) {
-
-        }
-
-        @Override
-        public void onAnimationEnd(Animator animation) {
-            if (mIsAnimatorCancel) return;
-            if (animation instanceof ValueAnimator) {
-                mRing.sweeping = mRing.sweep;
-            } else if (animation instanceof AnimatorSet) {
-                mRing.restore();
-                animatorSet.start();
-            }
-        }
-
-        @Override
-        public void onAnimationCancel(Animator animation) {
-
-        }
-
-        @Override
-        public void onAnimationRepeat(Animator animation) {
-
-        }
-    };
 }

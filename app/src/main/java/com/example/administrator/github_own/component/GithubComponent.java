@@ -3,6 +3,9 @@ package com.example.administrator.github_own.component;
 import com.example.administrator.github_own.activity.MainActivity;
 import com.example.administrator.github_own.fragment.NewsFeedFragment;
 import com.example.administrator.github_own.fragment.RepoListFragment;
+import com.example.administrator.github_own.fragment.SearchRepoListFragment;
+import com.example.administrator.github_own.fragment.SingleRepoAboutFragment;
+import com.example.administrator.github_own.fragment.SingleUserAboutFragment;
 import com.example.administrator.github_own.fragment.UserListFragment;
 
 import dagger.Component;
@@ -20,4 +23,10 @@ public interface GithubComponent {
     RepoListFragment inject(RepoListFragment fragment);
 
     UserListFragment inject(UserListFragment fragment);
+
+    SingleUserAboutFragment inject(SingleUserAboutFragment fragment);
+
+    SearchRepoListFragment inject(SearchRepoListFragment fragment);
+
+    SingleRepoAboutFragment inject(SingleRepoAboutFragment fragment);
 }

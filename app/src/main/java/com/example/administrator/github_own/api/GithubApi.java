@@ -1,9 +1,9 @@
 package com.example.administrator.github_own.api;
 
-import com.example.administrator.github_own.bean.CompositeUser;
 import com.example.administrator.github_own.bean.NewsFeedList;
 import com.example.administrator.github_own.bean.Repos;
-import com.example.administrator.github_own.bean.ReposList;
+import com.example.administrator.github_own.bean.SearchRepos;
+import com.example.administrator.github_own.bean.SingleRepo;
 import com.example.administrator.github_own.bean.SingleUser;
 import com.example.administrator.github_own.bean.User;
 import com.example.administrator.github_own.utils.Constants;
@@ -15,8 +15,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -63,6 +61,14 @@ public class GithubApi {
     public Observable<SingleUser> getSingleUser(String username) {
         return mGithubService.getSingleUser(username)
                 .subscribeOn(Schedulers.io());
+    }
+
+    public Observable<SearchRepos> getSearchRepos(String keyword) {
+        return mGithubService.getSearchRepos(keyword, "stars", "desc");
+    }
+
+    public Observable<SingleRepo> getSingleRepo(String username, String reponame) {
+        return mGithubService.getSingleRepo(username, reponame);
     }
 
 }

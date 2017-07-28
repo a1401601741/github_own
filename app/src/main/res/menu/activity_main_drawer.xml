@@ -3,40 +3,60 @@
 
     <group android:checkableBehavior = "single">
         <item
-            android:id = "@+id/nav_camera"
-            android:icon = "@drawable/ic_menu_camera"
-            android:title = "Import"
+            android:id = "@+id/nav_news_feed"
+            android:icon = "@drawable/icon_news_feed"
+            android:title = "News Feed"
             />
         <item
-            android:id = "@+id/nav_gallery"
-            android:icon = "@drawable/ic_menu_gallery"
-            android:title = "Gallery"
+            android:id = "@+id/nav_nofication"
+            android:icon = "@drawable/icon_notifications"
+            android:title = "Nofication"
             />
         <item
-            android:id = "@+id/nav_slideshow"
-            android:icon = "@drawable/ic_menu_slideshow"
-            android:title = "Slideshow"
+            android:id = "@+id/nav_my_repositories"
+            android:icon = "@drawable/icon_repositories"
+            android:title = "My repositories"
             />
         <item
-            android:id = "@+id/nav_manage"
-            android:icon = "@drawable/ic_menu_manage"
-            android:title = "Tools"
+            android:id = "@+id/nav_my_issues"
+            android:icon = "@drawable/icon_issues"
+            android:title = "My issues"
+            />
+        <item
+            android:id = "@+id/nav_my_pull_requests"
+            android:icon = "@drawable/icon_pull_request"
+            android:title = "My pull requests"
+            />
+        <item
+            android:id = "@+id/nav_my_gists"
+            android:icon = "@drawable/icon_gists"
+            android:title = "My gists"
             />
     </group>
 
-    <item android:title = "Communicate">
+
+    <item android:title = "Search">
         <menu>
             <item
-                android:id = "@+id/nav_share"
-                android:icon = "@drawable/ic_menu_share"
-                android:title = "Share"
+                android:id = "@+id/nav_search"
+                android:icon = "@drawable/icon_search"
+                android:title = "Search"
                 />
             <item
-                android:id = "@+id/nav_send"
-                android:icon = "@drawable/ic_menu_send"
-                android:title = "Send"
+                android:id = "@+id/nav_bookmarks"
+                android:icon = "@drawable/icon_bookmark"
+                android:title = "Bookmarks"
                 />
         </menu>
     </item>
 
+    <item android:title = "Setting">
+        <menu>
+            <item
+                android:id = "@+id/nav_setting"
+                android:icon = "@drawable/icon_settings"
+                android:title = "Setting"
+                />
+        </menu>
+    </item>
 </menu>

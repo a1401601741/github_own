@@ -1,5 +1,7 @@
 package com.example.administrator.github_own.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -8,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import com.example.administrator.github_own.R;
 import com.example.administrator.github_own.base.BaseActivity;
 import com.example.administrator.github_own.component.AppComponent;
-import com.example.administrator.github_own.contract.SingleUserAboutContract;
 import com.example.administrator.github_own.fragment.SingleUserAboutFragment;
 import com.example.administrator.github_own.fragment.SingleUserPublicActivityFragment;
 import com.example.administrator.github_own.widget.RVPIndicator;
@@ -24,8 +25,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/7/26 0026.
  */
 
-public class SingleUserActivity  extends BaseActivity implements SingleUserAboutContract.View{
-
+public class SingleUserActivity  extends BaseActivity{
 
     @Bind(R.id.rvp_indicator)
     RVPIndicator mRvpIndicator;
@@ -37,6 +37,8 @@ public class SingleUserActivity  extends BaseActivity implements SingleUserAbout
 
     private FragmentPagerAdapter mAdapter;
 
+    public final static String USER_NAME = "username";
+
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -45,9 +47,10 @@ public class SingleUserActivity  extends BaseActivity implements SingleUserAbout
 
     @Override
     public void initDatas() {
+        String username = getIntent().getStringExtra(USER_NAME);
         mDatas = Arrays.asList(getResources().getStringArray(R.array.single_user_tabs));
         mTabFragments = new ArrayList<>();
-        mTabFragments.add(new SingleUserAboutFragment());
+        mTabFragments.add(SingleUserAboutFragment.newInstance(username));
         mTabFragments.add(new SingleUserPublicActivityFragment());
 
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -70,7 +73,7 @@ public class SingleUserActivity  extends BaseActivity implements SingleUserAbout
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_single_user;
+        return R.layout.fragment_single_common;
     }
 
     @Override
@@ -87,6 +90,11 @@ public class SingleUserActivity  extends BaseActivity implements SingleUserAbout
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    public static void startActivity(Context context, String username) {
+        context.startActivity(new Intent(context, SingleUserActivity.class).putExtra(USER_NAME,
+                username));
     }
 
 }

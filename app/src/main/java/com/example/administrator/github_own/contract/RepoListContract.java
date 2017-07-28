@@ -1,9 +1,7 @@
 package com.example.administrator.github_own.contract;
 
 import com.example.administrator.github_own.base.BaseContract;
-import com.example.administrator.github_own.bean.NewsFeedList;
 import com.example.administrator.github_own.bean.Repos;
-import com.example.administrator.github_own.bean.ReposList;
 
 import java.util.List;
 

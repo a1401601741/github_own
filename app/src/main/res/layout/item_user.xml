@@ -4,45 +4,46 @@
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
                 android:orientation = "vertical"
-                android:padding="10dp"
+                android:padding = "10dp"
     >
 
     <ImageView
-        android:id="@+id/iv_user_avatar"
+        android:id = "@+id/iv_user_avatar"
         android:layout_width = "40dp"
         android:layout_height = "40dp"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
+        android:layout_centerVertical = "true"
+        android:layout_marginRight = "20dp"
         />
 
     <TextView
-        android:id="@+id/tv_user_name"
+        android:id = "@+id/tv_user_name"
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
-        android:layout_toRightOf="@id/iv_user_avatar"
-        tools:text="tom_Tom"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:layout_toRightOf = "@id/iv_user_avatar"
+        android:textColor = "@color/black"
+        android:textSize = "18sp"
+        android:textStyle = "bold"
+        tools:text = "tom_Tom"
         />
 
     <TextView
-        android:id="@+id/tv_user_followers"
+        android:id = "@+id/tv_user_followers"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:layout_below="@id/tv_user_name"
-        android:layout_toRightOf="@id/iv_user_avatar"
-        android:layout_marginTop="5dp"
-        tools:text="17 follows"
+        android:layout_below = "@id/tv_user_name"
+        android:layout_marginTop = "5dp"
+        android:layout_toRightOf = "@id/iv_user_avatar"
+        tools:text = "17 follows"
         />
+
     <TextView
-        android:id="@+id/tv_user_repos"
+        android:id = "@+id/tv_user_repos"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:layout_below="@id/tv_user_name"
-        android:layout_toRightOf="@id/tv_user_followers"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        tools:text="9 repos"
+        android:layout_below = "@id/tv_user_name"
+        android:layout_marginLeft = "10dp"
+        android:layout_marginTop = "5dp"
+        android:layout_toRightOf = "@id/tv_user_followers"
+        tools:text = "9 repos"
         />
 </RelativeLayout>

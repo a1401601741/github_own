@@ -30,12 +30,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        if (statusBarColor == 0) {
-            statusBarView = StatusBarCompat.compat(this, ContextCompat.getColor(this, R.color
-                    .colorPrimaryDark));
-        } else if (statusBarColor != -1) {
-            statusBarView = StatusBarCompat.compat(this, statusBarColor);
-        }
+//        if (statusBarColor == 0) {
+//            statusBarView = StatusBarCompat.compat(this, ContextCompat.getColor(this, R.color
+//                    .colorPrimaryDark));
+//        } else if (statusBarColor != -1) {
+//            statusBarView = StatusBarCompat.compat(this, statusBarColor);
+//        }
 
         transparent19or20();
         mContext=this;
